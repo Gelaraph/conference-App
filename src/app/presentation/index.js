@@ -5,8 +5,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
-import { Link } from "@mui/material";
+import { Alert } from "@mui/material";
 import Counters from "../components/Counters";
 import Information from "../components/Information";
 import SocialButton from "../components/SocialButton";
@@ -19,6 +18,12 @@ import { useState } from "react";
 
 const Presentation = () => {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleCloseAlert = () => {
+    setSuccess(false);
+  };
+
   return (
     <>
       <Box
@@ -178,10 +183,17 @@ const Presentation = () => {
         {openRegisterModal && (
           <RegisterModal
             open={openRegisterModal}
+            success={success}
+            setSuccess={setSuccess}
             onClose={() => setOpenRegisterModal(false)}
           />
         )}
       </Card>
+      {success && (
+        <Alert onClose={handleCloseAlert} className="register-success">
+          Registered successfully!
+        </Alert>
+      )}
     </>
   );
 };

@@ -5,8 +5,7 @@ import { styled } from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 import TextInput from "../TextInput";
 
-const RegisterModal = ({ open, onClose }) => {
-  const [success, setSuccess] = useState(false);
+const RegisterModal = ({ open, onClose, success, setSuccess }) => {
   const {
     control,
     handleSubmit,
@@ -16,7 +15,7 @@ const RegisterModal = ({ open, onClose }) => {
   const onSubmit = (data) => {
     // Handle form submission here
     setSuccess(true);
-    console.log(data);
+    onClose();
   };
 
   return (
@@ -25,11 +24,11 @@ const RegisterModal = ({ open, onClose }) => {
         <div className="contact-container">
           <div className="contact-title-container">
             <h1 className="contact-title">
-              Have a question or want to work together?
+              Want to attend the greatest culinary event of all times?
             </h1>
             <p>
-              Fill in your info in the form below and I look forward to hearing
-              from you!
+              Fill in your info in the form below and I look forward to seeing
+              you!
             </p>
           </div>
 
@@ -40,7 +39,7 @@ const RegisterModal = ({ open, onClose }) => {
               method="POST"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <div>
+              <div className="input-div">
                 <div>
                   <label htmlFor="name">Name</label>
                 </div>
@@ -53,9 +52,12 @@ const RegisterModal = ({ open, onClose }) => {
                     <TextInput className="contact-input" id="name" {...field} />
                   )}
                 />
-                {errors.name && <span>{errors.name.message}</span>}
+                {errors.name && (
+                  <span className="val-errors">{errors.name.message}</span>
+                )}
               </div>
-              <div>
+
+              <div className="input-div">
                 <div>
                   <label htmlFor="email">Email</label>
                 </div>
@@ -79,9 +81,12 @@ const RegisterModal = ({ open, onClose }) => {
                     />
                   )}
                 />
-                {errors.email && <span>{errors.email.message}</span>}
+                {errors.email && (
+                  <span className="val-errors">{errors.email.message}</span>
+                )}
               </div>
-              <div>
+
+              <div className="input-div">
                 <div>
                   <label htmlFor="address">Address</label>
                 </div>
@@ -98,9 +103,12 @@ const RegisterModal = ({ open, onClose }) => {
                     />
                   )}
                 />
-                {errors.address && <span>{errors.address.message}</span>}
+                {errors.address && (
+                  <span className="val-errors">{errors.address.message}</span>
+                )}
               </div>
-              <div>
+
+              <div className="input-div">
                 <div>
                   <label htmlFor="phone">Phone Number</label>
                 </div>
@@ -123,8 +131,11 @@ const RegisterModal = ({ open, onClose }) => {
                   <span className="val-errors">{errors.phone.message}</span>
                 )}
               </div>
+
               <div className="contact-btn">
-                <Button type="submit">Send</Button>
+                <Button type="submit" className="modal-btn">
+                  Send
+                </Button>
               </div>
             </form>
           </div>
@@ -149,9 +160,12 @@ const RegisterModalStyle = styled.div`
     border-radius: 4px;
     line-height: 1.5;
     outline: none;
-    margin-top: 0.5em;
+
     transition: 150ms ease;
     font-size: 1rem;
+  }
+  .input-div {
+    margin-top: 0.5em;
   }
   .contact-input {
     width: 100%;
@@ -216,7 +230,27 @@ const RegisterModalStyle = styled.div`
   textarea:focus {
     border-color: rgb(9, 21, 64);
   }
-
+  .val-errors {
+    color: red;
+    font-size: 12px;
+  }
+  .modal-btn {
+    width: 50%;
+    opacity: 1;
+    background-color: #03c;
+    color: rgb(255, 255, 255) !important;
+    box-shadow: rgba(26, 115, 232, 0.15);
+    background-size: 150% !important;
+    background-position-x: 25% !important;
+    box-shadow: none;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    min-width: 64px;
+    text-align: center;
+    min-height: 2rem;
+    padding: 0.4rem;
+  }
   @media (max-width: 767px) {
     .contact-input-container {
       flex-direction: column;

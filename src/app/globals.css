@@ -280,3 +280,15 @@ a:visited {
 .sponsors-section .title {
   color: #fff !important;
 }
+
+.hi {
+  background-color: red;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+}
+.register-success {
+  top: 15%;
+  right: 5%;
+  position: absolute;
+}
