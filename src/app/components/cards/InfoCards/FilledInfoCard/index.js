@@ -111,13 +111,6 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
   );
 }
 
-// Setting default props for the FilledInfoCard
-FilledInfoCard.defaultProps = {
-  variant: "contained",
-  color: "info",
-  action: false,
-};
-
 // Typechecking props for the FilledInfoCard
 FilledInfoCard.propTypes = {
   variant: PropTypes.oneOf(["contained", "gradient"]),

@@ -1,4 +1,4 @@
-// @mui material components
+"use client";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -14,8 +14,11 @@ import Supporters from "../components/Supporters";
 import DefaultFooter from "../components/footer/DefaultFooter";
 import Speaker from "../components/Speaker";
 import PhotoGrid from "../components/PhotoGrid";
+import RegisterModal from "../components/modals/RegisterModal";
+import { useState } from "react";
 
 const Presentation = () => {
+  const [openRegisterModal, setOpenRegisterModal] = useState(false);
   return (
     <>
       <Box
@@ -82,8 +85,9 @@ const Presentation = () => {
                   className="nav-btn-div  hero-btn"
                 >
                   <Button
-                    component={Link}
-                    href=""
+                    onClick={() => {
+                      setOpenRegisterModal(true);
+                    }}
                     size="big"
                     className="nav-btn"
                   >
@@ -136,7 +140,7 @@ const Presentation = () => {
                 sx={{ textAlign: { xs: "center", lg: "right" } }}
               >
                 <SocialButton
-                  component="a"
+                  // component="link"
                   href=""
                   target="_blank"
                   color="twitter"
@@ -171,6 +175,12 @@ const Presentation = () => {
             </Grid>
           </Container>
         </Box>
+        {openRegisterModal && (
+          <RegisterModal
+            open={openRegisterModal}
+            onClose={() => setOpenRegisterModal(false)}
+          />
+        )}
       </Card>
     </>
   );
